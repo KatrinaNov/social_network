@@ -1,0 +1,18 @@
+.header {
+    width: 100%;
+    min-height: 60px;
+    background: #fff;
+    padding: 5px 0;
+    box-shadow: 0 0 8px 1px rgb(0 0 0 / 20%);
+    display: flex;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 700;
+}
+.logo img {
+    max-width: 100px;
+    margin-right: 16px;
+}

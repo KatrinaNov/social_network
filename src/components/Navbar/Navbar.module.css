@@ -1,0 +1,14 @@
+.nav {
+    padding: 40px 20px;
+}
+.item {
+    margin-bottom: 24px;
+    color: #444;
+}
+.item a {
+    color: inherit;
+    font-size: 18px;
+}
+.item.active {
+    color: #dc4734;
+}
