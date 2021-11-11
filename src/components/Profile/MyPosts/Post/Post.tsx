@@ -2,7 +2,8 @@ import React from 'react';
 import s from './Post.module.css';
 
 type PostTypeProps = {
-  message: string
+  message: string,
+  likesCount: number
 }
 const Post = (props: PostTypeProps) => {
   return (
@@ -10,7 +11,7 @@ const Post = (props: PostTypeProps) => {
       <img src="https://download-cs.net/steam/avatars/3396.jpg" alt=""/>
       {props.message}
       <div>
-        <span>like</span>
+        <span>{props.likesCount}</span>
       </div>
 
     </div>

@@ -9,8 +9,8 @@ const MyPosts = () => {
       <input type="text" placeholder={'Write your message'}/>
       <button>Add post</button>
       <div className='posts'>
-        <Post message="It's my first post"/>
-        <Post message="Hi! I'm learning React"/>
+        <Post message={"It's my first post"} likesCount={25}/>
+        <Post message={"Hi! I'm learning React"} likesCount={400}/>
       </div>
     </div>
   )
