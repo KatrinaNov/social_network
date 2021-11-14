@@ -17,7 +17,12 @@ img {
   max-width: 100%;
 }
 .container {
-  max-width: 1140px;
+  max-width: 1200px;
   width: 96%;
-  margin: auto;
+  margin: 40px auto;
 }
+.app-wrapper {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+}
+

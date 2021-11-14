@@ -1,5 +1,13 @@
 .nav {
     padding: 40px;
+    background-color: #fff;
+    min-height: calc(100vh - 77px);
+    border-right: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+.nav ul {
+    position: sticky;
+    top: 40px;
 }
 .item {
     margin-bottom: 24px;
@@ -10,5 +18,5 @@
     font-size: 18px;
 }
 .item a.active {
-    color: #dc4734;
+    color: #be185d;
 }
