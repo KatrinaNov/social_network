@@ -1,12 +1,12 @@
 import React from 'react';
-import s from './Post.module.css';
+import s from './MyPosts.module.css';
 import Post from "./Post/Post";
 
 const MyPosts = () => {
   return (
     <div className='content'>
       <h3>My posts</h3>
-      <input type="text" placeholder={'Write your message'}/>
+      <textarea placeholder={'Write your message'} className={s.textarea}/>
       <button>Add post</button>
       <div className='posts'>
         <Post message={"It's my first post"} likesCount={25}/>

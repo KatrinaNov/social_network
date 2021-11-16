@@ -10,10 +10,16 @@
 .logo {
     display: flex;
     align-items: center;
-    font-size: 24px;
-    font-weight: 700;
+    font-size: 32px;
+    font-weight: 900;
+    font-style: italic;
 }
 .logo img {
     max-width: 100px;
     margin-right: 16px;
+}
+.logo__text {
+    background: linear-gradient(to top right, #d97706, #db2777);
+    color: transparent;
+    -webkit-background-clip: text;
 }
