@@ -4,7 +4,7 @@ import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {PostTypeProps} from "./MyPosts/Post/Post";
 
-type ProfilePropsType = {
+export type ProfilePropsType = {
   posts: Array<PostTypeProps>
 }
 
