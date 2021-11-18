@@ -8,21 +8,9 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {DialogItemType} from "./components/Dialogs/DialogItem/DialogItem";
-import {MessageType} from "./components/Dialogs/Message/Message";
-import {PostTypeProps} from "./components/Profile/MyPosts/Post/Post";
+import {StateType} from "./redux/state";
 
-type StateType = {
-  state: {
-    profilePage: {
-      posts: Array<PostTypeProps>
-    }
-    dialogsPage: {
-      dialogs: Array<DialogItemType>,
-      messages: Array<MessageType>,
-    }
-  }
-}
+
 const App = (props: StateType) => {
 
   return (
