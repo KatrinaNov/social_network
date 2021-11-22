@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import state from './redux/state';
+import state, {addPost} from './redux/state';
 
-ReactDOM.render(<App state={state}/>,
+ReactDOM.render(<App state={state} addPost={addPost}/>,
   document.getElementById('root')
 );
 
