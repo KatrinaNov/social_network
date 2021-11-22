@@ -10,8 +10,11 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {StateType} from "./redux/state";
 
+type AppPropsType = {
+  state: StateType
+}
 
-const App = (props: StateType) => {
+const App = (props: AppPropsType) => {
 
   return (
     <BrowserRouter>

@@ -1,4 +1,5 @@
 export type PostTypeProps = {
+  id: number,
   message: string,
   likesCount: number
 }
@@ -18,18 +19,16 @@ export type DialogPropsType = {
   messages: Array<MessageType>
 }
 export type StateType = {
-  state: {
     profilePage: MyPostsType
     dialogsPage: DialogPropsType
-  }
 }
 
-let state = {
+let state: StateType = {
   profilePage: {
     posts: [
       {id: 1, message: "It's my first post", likesCount: 12},
       {id: 2, message: "Hi! I'm learning React",  likesCount: 12},
-    ],
+    ]
   },
   dialogsPage: {
     dialogs: [
@@ -48,5 +47,4 @@ let state = {
     ]
   }
 }
-
 export default state;
