@@ -1,4 +1,4 @@
-import React, {RefObject} from 'react';
+import React, {RefObject, useRef} from 'react';
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
 import {PostTypeProps} from "../../../redux/state";
@@ -12,13 +12,13 @@ const MyPosts = (props: MyPostsType) => {
 
   let postsElements = props.posts.map(p => <Post id={p.id} message={p.message} likesCount={p.likesCount}/>)
 
-  let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef(); //создаем ссылку
+  // let newPostElement = React.createRef<HTMLTextAreaElement>();
+  let newPostElement = useRef<HTMLTextAreaElement>(null);
 
   let addPost = () => {
     let text = newPostElement.current?.value;
-    if (text) {
-      props.addPost(text);
-    }
+    if (text) props.addPost(text)
+    if (newPostElement.current) newPostElement.current.value = ''
   }
 
   return (

@@ -1,3 +1,5 @@
+import {rerenderEntireTree} from "../render";
+
 export type PostTypeProps = {
   id: number,
   message: string,
@@ -40,10 +42,10 @@ let state: StateType = {
     ],
     messages: [
       {id: 1, message: "Hello my friend!"},
-      {id: 2, message: "What's up? Can you help me?"},
+      {id: 2, message: "What's up! Can you help me?"},
       {id: 3, message: 'Yup!'},
       {id: 4, message: "Cool!"},
-      {id: 5, message: 'Andrew'},
+      {id: 5, message: 'Can you tell me what problems you have and we will solve its together '},
     ]
   }
 }
@@ -55,6 +57,7 @@ export let addPost = (postMessage: string) => {
     likesCount: 0
   };
   state.profilePage.posts.push(newPost);
+  rerenderEntireTree(state);
 
 }
 export default state;

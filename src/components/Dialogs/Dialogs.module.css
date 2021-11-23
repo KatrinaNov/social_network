@@ -50,12 +50,12 @@
     background: #f3f4f6;
     transform: translateX(-50%) rotate(-45deg);
 }
-.message.answer {
+.message:nth-of-type(even) {
     background: #2563eb;
     color: #fff;
     margin-left: auto;
 }
-.message.answer:before {
+.message:nth-of-type(even):before {
     left: 100%;
     background: #2563eb;
 }
