@@ -7,12 +7,13 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {StateType} from "./redux/state";
+import {StateType, updateNewPostText} from "./redux/state";
 import Sidebar from "./components/Sidebar/Sidebar";
 
 type AppPropsType = {
   state: StateType,
-  addPost: (postMessage: string) => void
+  addPost: () => void
+  updateNewPostText: (newText: string) => void
 }
 
 const App = (props: AppPropsType) => {
@@ -25,7 +26,13 @@ const App = (props: AppPropsType) => {
         <div className="container">
           <main className='main'>
             <Routes>
-              <Route path='/profile' element={<Profile state={props.state.profilePage} addPost={props.addPost}/>}/>
+              <Route path='/profile'
+                     element={<Profile
+                              state={props.state.profilePage}
+                              addPost={props.addPost}
+                              updateNewPostText={props.updateNewPostText}
+                     />}
+              />
               <Route path='/dialogs/*' element={<Dialogs state={props.state.dialogsPage}/>}/>
               <Route path='/news' element={<News/>}/>
               <Route path='/music' element={<Music/>}/>
