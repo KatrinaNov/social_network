@@ -7,13 +7,15 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {StateType, updateNewPostText} from "./redux/state";
+import {StateType, updateNewMessageText, updateNewPostText} from "./redux/state";
 import Sidebar from "./components/Sidebar/Sidebar";
 
 type AppPropsType = {
   state: StateType,
   addPost: () => void
   updateNewPostText: (newText: string) => void
+  addMessage: () => void
+  updateNewMessageText: (newText: string) => void
 }
 
 const App = (props: AppPropsType) => {
@@ -28,12 +30,18 @@ const App = (props: AppPropsType) => {
             <Routes>
               <Route path='/profile'
                      element={<Profile
-                              state={props.state.profilePage}
-                              addPost={props.addPost}
-                              updateNewPostText={props.updateNewPostText}
+                       state={props.state.profilePage}
+                       addPost={props.addPost}
+                       updateNewPostText={props.updateNewPostText}
                      />}
               />
-              <Route path='/dialogs/*' element={<Dialogs state={props.state.dialogsPage}/>}/>
+              <Route path='/dialogs/*'
+                     element={<Dialogs
+                       state={props.state.dialogsPage}
+                       addMessage={props.addMessage}
+                       updateNewMessageText={props.updateNewMessageText}
+                     />}
+              />
               <Route path='/news' element={<News/>}/>
               <Route path='/music' element={<Music/>}/>
               <Route path='/settings' element={<Settings/>}/>

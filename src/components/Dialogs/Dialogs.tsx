@@ -6,6 +6,8 @@ import {DialogPropsType} from "../../redux/state";
 
 export type StateDialogsType = {
   state: DialogPropsType
+  addMessage: () => void
+  updateNewMessageText: (newText: string) => void
 }
 
 const Dialogs = (props: StateDialogsType) => {
@@ -19,8 +21,11 @@ const Dialogs = (props: StateDialogsType) => {
   let newMessage = React.createRef<HTMLTextAreaElement>();
 
   const addMessage = () => {
-    let message = newMessage.current?.value;
-    alert(message);
+    props.addMessage()
+  }
+  const onChangeNewMessageText = () => {
+    let text = newMessage.current?.value;
+    text ? props.updateNewMessageText(text) : props.updateNewMessageText('')
   }
   return (<>
       <h2 className={s.title}>Messages</h2>
@@ -32,7 +37,11 @@ const Dialogs = (props: StateDialogsType) => {
           {messagesElements}
           {/*<div className={`${s.message} ${s.answer}`}>Hello my friend!</div>*/}
           <div className={s.send_message}>
-            <textarea ref={newMessage}></textarea>
+            <textarea
+              ref={newMessage}
+              onChange={onChangeNewMessageText}
+              value={props.state.newMessage}
+            />
             <button onClick={addMessage}>Send message</button>
           </div>
 

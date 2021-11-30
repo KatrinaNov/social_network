@@ -21,6 +21,7 @@ export type MessageType = {
 export type DialogPropsType = {
   dialogs: Array <DialogItemType>
   messages: Array<MessageType>
+  newMessage: string
 }
 export type SidebarType = {
   friends: Array<FriendType>
@@ -53,7 +54,8 @@ let state: StateType = {
       {id: 3, message: 'Yup!'},
       {id: 4, message: "Cool!"},
       {id: 5, message: 'Can you tell me what problems you have and we will solve its together '},
-    ]
+    ],
+    newMessage: 'Add your message'
   },
   sidebar: {
     friends: [
@@ -79,6 +81,20 @@ export let addPost = () => {
 
 export let updateNewPostText = (newText: string) => {
   state.profilePage.newPostText = newText;
+  rerenderEntireTree(state);
+}
+export let addMessage = () => {
+  let newMessage: MessageType = {
+    id: 5,
+    message: state.dialogsPage.newMessage
+  };
+  state.dialogsPage.messages.push(newMessage);
+  state.dialogsPage.newMessage = '';
+  rerenderEntireTree(state);
+}
+
+export let updateNewMessageText = (newMessage: string) => {
+  state.dialogsPage.newMessage = newMessage;
   rerenderEntireTree(state);
 }
 
