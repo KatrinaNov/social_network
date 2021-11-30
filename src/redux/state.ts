@@ -1,4 +1,5 @@
 import {rerenderEntireTree} from "../render";
+import {FriendType} from "../components/Friends/Friend/Friend";
 
 export type PostTypeProps = {
   id: number,
@@ -17,19 +18,23 @@ export type MessageType = {
   id: number
 }
 export type DialogPropsType = {
-  dialogs: Array<DialogItemType>
+  dialogs: Array <DialogItemType>
   messages: Array<MessageType>
+}
+export type SidebarType = {
+  friends: Array<FriendType>
 }
 export type StateType = {
     profilePage: PostsType
     dialogsPage: DialogPropsType
+    sidebar: SidebarType
 }
 
 let state: StateType = {
   profilePage: {
     posts: [
       {id: 1, message: "It's my first post", likesCount: 12},
-      {id: 2, message: "Hi! I'm learning React",  likesCount: 12},
+      {id: 2, message: "Hi! I'm learning React",  likesCount: 152},
     ]
   },
   dialogsPage: {
@@ -46,6 +51,15 @@ let state: StateType = {
       {id: 3, message: 'Yup!'},
       {id: 4, message: "Cool!"},
       {id: 5, message: 'Can you tell me what problems you have and we will solve its together '},
+    ]
+  },
+  sidebar: {
+    friends: [
+      {id: 1, name: 'Maksim'},
+      {id: 2, name: 'Vanya'},
+      {id: 3, name: 'Alex'},
+      {id: 4, name: 'Andrew'},
+      {id: 5, name: 'Sergey'},
     ]
   }
 }
