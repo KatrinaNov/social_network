@@ -1,5 +1,8 @@
-import {rerenderEntireTree} from "../render";
 import {FriendType} from "../components/Friends/Friend/Friend";
+
+let rerenderEntireTree = (state: StateType) => {
+  console.log('State has changed')
+}
 
 export type PostTypeProps = {
   id: number,
@@ -55,7 +58,7 @@ let state: StateType = {
       {id: 4, message: "Cool!"},
       {id: 5, message: 'Can you tell me what problems you have and we will solve its together '},
     ],
-    newMessage: 'Add your message'
+    newMessage: 'Write your message'
   },
   sidebar: {
     friends: [
@@ -68,7 +71,7 @@ let state: StateType = {
   }
 }
 
-export let addPost = () => {
+export const addPost = () => {
   let newPost: PostTypeProps = {
     id: 5,
     message: state.profilePage.newPostText,
@@ -79,11 +82,11 @@ export let addPost = () => {
   rerenderEntireTree(state);
 }
 
-export let updateNewPostText = (newText: string) => {
+export const updateNewPostText = (newText: string) => {
   state.profilePage.newPostText = newText;
   rerenderEntireTree(state);
 }
-export let addMessage = () => {
+export const addMessage = () => {
   let newMessage: MessageType = {
     id: 5,
     message: state.dialogsPage.newMessage
@@ -93,9 +96,12 @@ export let addMessage = () => {
   rerenderEntireTree(state);
 }
 
-export let updateNewMessageText = (newMessage: string) => {
+export const updateNewMessageText = (newMessage: string) => {
   state.dialogsPage.newMessage = newMessage;
   rerenderEntireTree(state);
 }
 
+export const subscribe = (observer: (state: StateType) => void) => {
+  rerenderEntireTree = observer; // наблюдатель, pattern
+}
 export default state;
