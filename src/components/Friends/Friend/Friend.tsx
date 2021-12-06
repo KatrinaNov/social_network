@@ -1,11 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import s from './Friend.module.css';
+import {FriendType} from "../../../redux/state";
 
-export type FriendType = {
-  id: number
-  name: string
-}
 
 const Friend = ({id, name, ...props}: FriendType) => {
   return (

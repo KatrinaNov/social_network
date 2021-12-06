@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Profile.module.css';
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {PostsType, updateNewPostText} from "../../redux/state";
+import {PostsType} from "../../redux/state";
 
 export type ProfilePropsType = {
   state: PostsType
