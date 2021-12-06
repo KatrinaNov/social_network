@@ -14,8 +14,8 @@ type AppPropsType = {
   state: StateType,
   // addPost: () => void
   // updateNewPostText: (newText: string) => void
-  addMessage: () => void
-  updateNewMessageText: (newText: string) => void
+  // addMessage: () => void
+  // updateNewMessageText: (newText: string) => void
   dispatch: (action: ActionsTypes) => void
 }
 
@@ -40,8 +40,9 @@ const App = (props: AppPropsType) => {
               <Route path='/dialogs/*'
                      element={<Dialogs
                        state={props.state.dialogsPage}
-                       addMessage={props.addMessage}
-                       updateNewMessageText={props.updateNewMessageText}
+                       dispatch={props.dispatch}
+                       // addMessage={props.addMessage}
+                       // updateNewMessageText={props.updateNewMessageText}
                      />}
               />
               <Route path='/news' element={<News/>}/>

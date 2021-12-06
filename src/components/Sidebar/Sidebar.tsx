@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from "../Navbar/Navbar";
 import Friends from "../Friends/Friends";
-import {FriendType} from "../Friends/Friend/Friend";
+import {FriendType} from "../../redux/state";
 
 type SidebarType = {
   state: Array<FriendType>
