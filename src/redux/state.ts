@@ -32,17 +32,17 @@ export type StateType = {
   dialogsPage: DialogPropsType
   sidebar: SidebarType
 }
-type AddPostActionType = {
+export type AddPostActionType = {
   type: "ADD-POST"
 }
-type UpdateNewPostTextActionType = {
+export type UpdateNewPostTextActionType = {
   type: "UPDATE-NEW-POST-TEXT"
   newText: string
 }
-type AddMessageActionType = {
+export type AddMessageActionType = {
   type: "ADD-MESSAGE"
 }
-type UpdateNewMessageTextActionType = {
+export type UpdateNewMessageTextActionType = {
   type: "UPDATE-NEW-MESSAGE-TEXT"
   newMessage: string
 }
@@ -58,6 +58,12 @@ export type StoreType = {
   subscribe: (observer: (state: StateType) => void) => void
   dispatch: (action: ActionsTypes) => void
 }
+
+const ADD_POST = "ADD-POST";
+const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const ADD_MESSAGE = "ADD-MESSAGE";
+const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
+
 let store: StoreType = {
   _state: {
     profilePage: {
@@ -129,6 +135,26 @@ let store: StoreType = {
       this._callSubscriber(this._state);
     }
   }
+}
+export default store;
+
+export const addPostActionCreator = ():AddPostActionType => ({type: ADD_POST})
+export const updateNewPOstTextActionCreator = (text: string):UpdateNewPostTextActionType => ({
+  type: UPDATE_NEW_POST_TEXT, newText: text
+})
+export const addMessageActionCreator = ():AddMessageActionType => ({type: ADD_MESSAGE})
+export const updateNewMessageTextActionCreator = (text: string):UpdateNewMessageTextActionType => ({
+  type: UPDATE_NEW_MESSAGE_TEXT, newMessage: text
+})
+
+
+
+
+
+
+
+
+
   // addPost() {
   //   let newPost: PostTypeProps = {
   //     id: 5,
@@ -156,9 +182,6 @@ let store: StoreType = {
   //   this._state.dialogsPage.newMessage = newMessage;
   //   this._callSubscriber(this._state);
   // },
-
-}
-
 
 // let state: StateType = {
 //   profilePage: {
@@ -229,4 +252,3 @@ let store: StoreType = {
 // export const subscribe = (observer: (state: StateType) => void) => {
 //   rerenderEntireTree = observer; // наблюдатель, pattern
 
-export default store;
