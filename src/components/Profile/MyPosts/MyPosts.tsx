@@ -3,8 +3,8 @@ import s from './MyPosts.module.css';
 import Post from "./Post/Post";
 import {
   ActionsTypes,
-  addPostActionCreator,
-  PostTypeProps, updateNewPOstTextActionCreator,
+  addPostCreator,
+  PostTypeProps, updateNewPOstTextCreator,
 } from "../../../redux/state";
 
 export type MyPostsType = {
@@ -22,14 +22,14 @@ const MyPosts = (props: MyPostsType) => {
   const newPostElement = useRef<HTMLTextAreaElement>(null);
 
   const addPost = () => {
-    props.dispatch(addPostActionCreator())
+    props.dispatch(addPostCreator())
   }
   const onPostChange = () => {
     let text = newPostElement.current?.value;
     // text ? props.updateNewPostText(text) : props.updateNewPostText('')
     text ?
-      props.dispatch(updateNewPOstTextActionCreator(text)) :
-      props.dispatch(updateNewPOstTextActionCreator(''))
+      props.dispatch(updateNewPOstTextCreator(text)) :
+      props.dispatch(updateNewPOstTextCreator(''))
   }
 
   return (

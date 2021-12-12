@@ -7,6 +7,7 @@ import store, {StateType} from "./redux/state";
 
 let rerenderEntireTree = (state: StateType) => {
   ReactDOM.render(<App
+      store={store}
       state={store.getState()}
       dispatch={store.dispatch.bind(store)}
       // addPost={store.addPost.bind(store)}
