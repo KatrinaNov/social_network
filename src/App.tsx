@@ -7,11 +7,13 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {ActionsTypes, StateType, StoreType} from "./redux/store";
+import {ActionsTypes, StateType} from "./redux/store";
 import Sidebar from "./components/Sidebar/Sidebar";
+import {Store} from "redux";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 type AppPropsType = {
-  store: any
+  store: Store
   state: StateType
   dispatch: (action: ActionsTypes) => void
 }
@@ -27,15 +29,15 @@ const App = (props: AppPropsType) => {
           <main className='main'>
             <Routes>
               <Route path='/profile'
-                     element={<Profile
-                       state={props.state.profilePage}
-                       dispatch={props.dispatch}
+                     element={<Profile store={props.store}
+                       // state={props.state.profilePage}
+                       // dispatch={props.dispatch}
                        // addPost={props.addPost}
                        // updateNewPostText={props.updateNewPostText}
                      />}
               />
               <Route path='/dialogs/*'
-                     element={<Dialogs
+                     element={<DialogsContainer
                        store={props.store}
                        // state={props.state.dialogsPage}
                        // dispatch={props.dispatch}

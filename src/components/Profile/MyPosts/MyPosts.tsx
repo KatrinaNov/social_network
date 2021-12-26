@@ -1,18 +1,15 @@
-import React, {RefObject, useRef} from 'react';
+import React, {useRef} from 'react';
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
 import {
-  ActionsTypes,
   PostTypeProps,
 } from "../../../redux/store";
-import {addPostCreator, updateNewPOstTextCreator} from "../../../redux/profile-reducer";
 
 export type MyPostsType = {
   posts: Array<PostTypeProps>
-  // addPost: () => void
-  // updateNewPostText: (newText: string) => void
+  addPost: () => void
+  updateNewPostText: (newText: string) => void
   newPostText: string
-  dispatch: (action: ActionsTypes) => void
 }
 
 const MyPosts = (props: MyPostsType) => {
@@ -21,15 +18,13 @@ const MyPosts = (props: MyPostsType) => {
   // let newPostElement = React.createRef<HTMLTextAreaElement>();
   const newPostElement = useRef<HTMLTextAreaElement>(null);
 
-  const addPost = () => {
-    props.dispatch(addPostCreator())
+  const onAddPost = () => {
+    props.addPost();
+    // props.dispatch(addPostCreator())
   }
   const onPostChange = () => {
     let text = newPostElement.current?.value;
-    // text ? props.updateNewPostText(text) : props.updateNewPostText('')
-    text ?
-      props.dispatch(updateNewPOstTextCreator(text)) :
-      props.dispatch(updateNewPOstTextCreator(''))
+    text ? props.updateNewPostText(text) : props.updateNewPostText('')
   }
 
   return (
@@ -41,7 +36,7 @@ const MyPosts = (props: MyPostsType) => {
         value={props.newPostText}
         onChange={onPostChange}
       />
-      <button onClick={addPost}>Add post</button>
+      <button onClick={onAddPost}>Add post</button>
       <div className='posts'>
         {postsElements}
       </div>
