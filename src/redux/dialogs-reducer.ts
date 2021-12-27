@@ -1,14 +1,25 @@
-import {DialogPropsType, MessageType} from "./store";
-
-const ADD_MESSAGE = "ADD-MESSAGE";
-const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
+export type DialogItemType = {
+  name: string
+  id: number
+}
+export type MessageType = {
+  message: string
+  id: number
+}
+export type InitialStateType = {
+  dialogs: Array<DialogItemType>
+  messages: Array<MessageType>
+  newMessage: string
+}
 
 export type DialogsActionsTypes =
   ReturnType<typeof addMessageCreator>
   | ReturnType<typeof updateNewMessageTextCreator>
 
-let initialState = {
+const ADD_MESSAGE = "ADD-MESSAGE";
+const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
 
+let initialState: InitialStateType = {
   dialogs: [
     {id: 1, name: 'Dimych'},
     {id: 2, name: 'Maksim'},
@@ -16,18 +27,17 @@ let initialState = {
     {id: 4, name: 'Vanya'},
     {id: 5, name: 'Andrew'},
   ],
-    messages: [
-  {id: 1, message: "Hello my friend!"},
-  {id: 2, message: "What's up! Can you help me?"},
-  {id: 3, message: 'Yup!'},
-  {id: 4, message: "Cool!"},
-  {id: 5, message: 'Can you tell me what problems you have and we will solve its together '},
-],
+  messages: [
+    {id: 1, message: "Hello my friend!"},
+    {id: 2, message: "What's up! Can you help me?"},
+    {id: 3, message: 'Yup!'},
+    {id: 4, message: "Cool!"},
+    {id: 5, message: 'Can you tell me what problems you have and we will solve its together '},
+  ],
   newMessage: ''
 }
 
-
-const dialogsReducer = (state: DialogPropsType = initialState, action: DialogsActionsTypes) => {
+const dialogsReducer = (state: InitialStateType = initialState, action: DialogsActionsTypes): InitialStateType => {
 
   switch (action.type) {
 

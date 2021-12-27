@@ -2,46 +2,46 @@ import profileReducer, {ProfileActionsTypes} from "./profile-reducer";
 import dialogsReducer, {DialogsActionsTypes} from "./dialogs-reducer";
 import sidebarReducer, {SideBarActionsTypes} from "./sidebar-reducer";
 
-export type FriendType = {
+type FriendType = {
   id: number
   name: string
 }
-export type PostTypeProps = {
+type PostTypeProps = {
   id: number,
   message: string,
   likesCount: number
 }
-export type PostsType = {
+type PostsType = {
   posts: Array<PostTypeProps>
   newPostText: string
 }
-export type DialogItemType = {
+type DialogItemType = {
   name: string
   id: number
 }
-export type MessageType = {
+type MessageType = {
   message: string
   id: number
 }
-export type DialogPropsType = {
+type DialogPropsType = {
   dialogs: Array<DialogItemType>
   messages: Array<MessageType>
   newMessage: string
 }
-export type SidebarType = {
+type SidebarType = {
   friends: Array<FriendType>
 }
-export type StateType = {
+type StateType = {
   profilePage: PostsType
   dialogsPage: DialogPropsType
   sidebar: SidebarType
 }
-export type ActionsTypes =
+type ActionsTypes =
   ProfileActionsTypes
   | DialogsActionsTypes
   | SideBarActionsTypes
 
-export type StoreType = {
+type StoreType = {
   _state: StateType
   _callSubscriber: (state: StateType) => void
   getState: () => StateType

@@ -3,19 +3,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import{StateType} from "./redux/store";
 import store from "./redux/redux-store";
+import {BrowserRouter} from "react-router-dom";
+import {Provider} from "react-redux";
 
 let rerenderEntireTree = () => {
-  ReactDOM.render(<App
-      store={store}
-      state={store.getState()}
-      dispatch={store.dispatch.bind(store)}
-      // addPost={store.addPost.bind(store)}
-      // updateNewPostText={store.updateNewPostText.bind(store)}
-      // addMessage={store.addMessage.bind(store)}
-      // updateNewMessageText={store.updateNewMessageText.bind(store)}
-    />,
+  ReactDOM.render(
+    <BrowserRouter>
+      <Provider store={store}>
+        <App
+          // store={store}
+          // state={store.getState()}
+          // dispatch={store.dispatch.bind(store)}
+          // addPost={store.addPost.bind(store)}
+          // updateNewPostText={store.updateNewPostText.bind(store)}
+          // addMessage={store.addMessage.bind(store)}
+          // updateNewMessageText={store.updateNewMessageText.bind(store)}
+        />
+      </Provider>
+    </BrowserRouter>,
     document.getElementById('root')
   );
 }

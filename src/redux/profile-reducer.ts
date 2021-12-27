@@ -1,4 +1,12 @@
-import {PostsType, PostTypeProps} from "./store";
+export type PostTypeProps = {
+  id: number,
+  message: string,
+  likesCount: number
+}
+export type InitialStatePostsType = {
+  posts: Array<PostTypeProps>
+  newPostText: string
+}
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
@@ -7,7 +15,7 @@ export type ProfileActionsTypes =
   ReturnType<typeof addPostCreator>
   | ReturnType<typeof updateNewPOstTextCreator>
 
-let initialState = {
+let initialState: InitialStatePostsType = {
   posts: [
     {id: 1, message: "It's my first post", likesCount: 12},
     {id: 2, message: "Hi! I'm learning React", likesCount: 152},
@@ -15,7 +23,7 @@ let initialState = {
   newPostText: 'Write your message'
 }
 
-const profileReducer = (state: PostsType = initialState, action: ProfileActionsTypes) => {
+const profileReducer = (state: InitialStatePostsType = initialState, action: ProfileActionsTypes): InitialStatePostsType  => {
   // state is _state.profilePage here
 
   switch (action.type) {

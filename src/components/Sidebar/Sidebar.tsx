@@ -1,17 +1,13 @@
 import React from 'react';
 import Navbar from "../Navbar/Navbar";
-import Friends from "../Friends/Friends";
-import {FriendType} from "../../redux/store";
+import FriendsContainer from "../Friends/FriendsContainer";
 
-type SidebarType = {
-  state: Array<FriendType>
-}
 
-const Sidebar = (props: SidebarType) => {
+const Sidebar = () => {
   return (
     <div className="sidebar">
       <Navbar/>
-      <Friends friends={props.state}/>
+      <FriendsContainer/>
     </div>
   );
 }
