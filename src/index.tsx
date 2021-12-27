@@ -7,26 +7,16 @@ import store from "./redux/redux-store";
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 
-let rerenderEntireTree = () => {
-  ReactDOM.render(
-    <BrowserRouter>
-      <Provider store={store}>
-        <App
-          // store={store}
-          // state={store.getState()}
-          // dispatch={store.dispatch.bind(store)}
-          // addPost={store.addPost.bind(store)}
-          // updateNewPostText={store.updateNewPostText.bind(store)}
-          // addMessage={store.addMessage.bind(store)}
-          // updateNewMessageText={store.updateNewMessageText.bind(store)}
-        />
-      </Provider>
-    </BrowserRouter>,
-    document.getElementById('root')
-  );
-}
-rerenderEntireTree();
-store.subscribe(rerenderEntireTree);
+ReactDOM.render(
+  <BrowserRouter>
+    <Provider store={store}>
+      <App/>
+    </Provider>
+  </BrowserRouter>,
+  document.getElementById('root')
+);
+// rerenderEntireTree();
+// store.subscribe(rerenderEntireTree);
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
