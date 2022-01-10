@@ -33,6 +33,7 @@ const MyPosts = (props: MyPostsPropsType) => {
         ref={newPostElement}
         value={props.newPostText}
         onChange={onPostChange}
+        placeholder={'Write your message'}
       />
       <button onClick={onAddPost}>Add post</button>
       <div className='posts'>

@@ -20,7 +20,7 @@ let initialState: InitialStatePostsType = {
     {id: 1, message: "It's my first post", likesCount: 12},
     {id: 2, message: "Hi! I'm learning React", likesCount: 152},
   ],
-  newPostText: 'Write your message'
+  newPostText: ''
 }
 
 const profileReducer = (state: InitialStatePostsType = initialState, action: ProfileActionsTypes): InitialStatePostsType => {
@@ -34,17 +34,11 @@ const profileReducer = (state: InitialStatePostsType = initialState, action: Pro
         message: state.newPostText,
         likesCount: 0
       };
-      let stateCopy = {...state}
-      stateCopy.posts = [...state.posts];
-      stateCopy.posts.push(newPost);
-      stateCopy.newPostText = '';
-      return stateCopy;
+      return {...state, posts: [...state.posts, newPost], newPostText: ''};
     }
 
     case UPDATE_NEW_POST_TEXT:
-      let stateCopy = {...state};
-      stateCopy.newPostText = action.newText;
-      return stateCopy;
+      return {...state, newPostText: action.newText};
 
     default:
       return state;
