@@ -4,26 +4,30 @@ import {UsersPropsType} from "./UsersContainer";
 import axios from "axios";
 import userPhoto from '../../assets/images/user-default.png'
 
-class Users extends React.Component<UsersPropsType> {
+const UsersFC = (props: UsersPropsType) => {
 
-  constructor(props: UsersPropsType) {
-    super(props);
-    axios.get('https://social-network.samuraijs.com/api/1.0/users')
-      .then(response => this.props.setUsers(response.data.items))
+  let getUsers = () => {
+    if (props.users.length === 0) {
+
+      axios.get('https://social-network.samuraijs.com/api/1.0/users')
+        .then(response => props.setUsers(response.data.items))
+    }
   }
 
-  render() {
-    return <div>
+
+  return (
+    <div>
+      <button onClick={getUsers}>GetUsers</button>
       {
-        this.props.users.map(u => <div key={u.id}>
+        props.users.map(u => <div key={u.id}>
             <div>
               <div className={styles.userAvatar}>
                 <img src={u.photos.small !== null ? u.photos.small : userPhoto} alt=""/>
               </div>
               <div>
                 {u.followed
-                  ? <button onClick={() => this.props.unfollow(u.id)}>Unfollow</button>
-                  : <button onClick={() => this.props.follow(u.id)}>Follow</button>
+                  ? <button onClick={() => props.unfollow(u.id)}>Unfollow</button>
+                  : <button onClick={() => props.follow(u.id)}>Follow</button>
                 }
               </div>
             </div>
@@ -33,15 +37,15 @@ class Users extends React.Component<UsersPropsType> {
                 <div>{u.status}</div>
               </div>
               <div>
-                <div>{"u.location.country"}</div>
-                <div>{"u.location.city"}</div>
+                <div>{'u.location.country'}</div>
+                <div>{'u.location.city'}</div>
               </div>
             </div>
           </div>
         )
       }
     </div>
-  }
+  );
 };
 
-export default Users;
+export default UsersFC;
