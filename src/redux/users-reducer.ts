@@ -2,11 +2,15 @@ type LocationType = {
   city: string,
   country: string
 }
+type PhotosType = {
+  small: string
+  large: string
+}
 export type UserTypeProps = {
   id: number,
-  photoUrl: string,
+  name: string,
+  photos: PhotosType,
   followed: boolean,
-  fullName: string,
   status: string,
   location: LocationType
 
