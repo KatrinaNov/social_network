@@ -2,13 +2,13 @@ import React from 'react';
 import './App.css';
 import Header from "./components/Header/Header";
 import {Route, Routes} from "react-router-dom";
-import Profile from "./components/Profile/Profile";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import Sidebar from "./components/Sidebar/Sidebar";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 //
 // type AppPropsType = {
 //   store: Store
@@ -25,8 +25,8 @@ const App = () => {
         <div className="container">
           <main className='main'>
             <Routes>
-              <Route path='/profile'
-                     element={<Profile/>}
+              <Route path='/profile/*'
+                     element={<ProfileContainer/>}
               />
               <Route path='/dialogs/*'
                      element={<DialogsContainer />}
