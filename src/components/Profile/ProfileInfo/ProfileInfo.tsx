@@ -1,18 +1,20 @@
 import React from 'react';
 import s from './ProfileInfo.module.css'
 import Preloader from "../../common/Preloader/Preloader";
+import avatarDefault from '../../../assets/images/user-default.png'
+import {MapStatePropsType} from "../ProfileContainer";
 
-const ProfileInfo = (props: any) => {
+
+const ProfileInfo = (props: MapStatePropsType) => {
   if (!props.profile) {
     return <Preloader/>
   }
-  console.log(props.profile)
   return (
     <div>
       <div className={s.author}>
         <div className={s.author_avatar}>
           {/*<img src="https://klike.net/uploads/posts/2020-04/1587719791_1.jpg" alt=""/>*/}
-          <img src={props.profile.photos.large} alt=""/>
+          <img src={props.profile && props.profile.photos.large !== null ? props.profile.photos.large : avatarDefault} alt=""/>
         </div>
         <div className="author__text">
           <h2>{props.profile.fullName}</h2>

@@ -25,9 +25,13 @@ const App = () => {
         <div className="container">
           <main className='main'>
             <Routes>
-              <Route path='/profile/*'
+              <Route path='/profile'
                      element={<ProfileContainer/>}
-              />
+              >
+                <Route path=':userId'
+                       element={<ProfileContainer/>}
+                />
+              </Route>
               <Route path='/dialogs/*'
                      element={<DialogsContainer />}
               />
