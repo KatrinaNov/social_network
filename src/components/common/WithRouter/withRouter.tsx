@@ -1,12 +1,14 @@
 import {
   useLocation,
   useNavigate,
-  useParams
+  useParams,
+  Location, NavigateFunction
 } from "react-router-dom";
+import {ComponentType} from "react";
 
 type ComponentWithRouterPropType = {
-  location: any
-  navigate: any
+  location: Location
+  navigate: NavigateFunction
   params: {userId: string}
 }
 
