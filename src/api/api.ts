@@ -18,10 +18,10 @@ export const usersAPI = {
   authMe ()  {
     return instance.get(`auth/me`, ).then(response => response.data)
   },
-  deleteFollow (id: number) {
+  unFollow (id: number) {
     return  instance.delete(`follow/${id}`).then(response => response.data)
   },
-  getFollow (id: number)  {
+  follow (id: number)  {
     return   instance.post(`follow/${id}`).then(response => response.data)
   }
 
