@@ -86,11 +86,11 @@ export const updateNewPOstTextCreator = (text: string) => ({
   type: UPDATE_NEW_POST_TEXT, newText: text
 } as const)
 
-export const getUserProfile = (param_userId: string) => (dispatch: Dispatch) => {
-  let userId = param_userId
-  if (!userId) {
-    userId = '2'
-  }
+export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
+  // let userId = param_userId
+  // if (!userId) {
+  //   userId = '2'
+  // }
   usersAPI.getUserProfile(userId).then(data => dispatch(setUserProfile(data)))
 }
 

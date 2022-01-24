@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {usersAPI} from "../api/api";
+import {authAPI, usersAPI} from "../api/api";
 import {setCurrentPage, setUsers} from "./users-reducer";
 
 export type InitialStatePostsType = {
@@ -40,8 +40,8 @@ const authReducer = (state: InitialStatePostsType = initialState, action: AuthAc
 export const setAuthUserData = (id: number, email: string, login: string) => ({type: SET_USER_DATA, data: {id, email, login}} as const)
 export const toggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching} as const)
 
-export const authMe = () => (dispatch: Dispatch) => {
-  usersAPI.authMe()
+export const getAuthUserData = () => (dispatch: Dispatch) => {
+  authAPI.me()
     .then(data => {
       if (data.resultCode === 0) {
         let {id, email, login} = data.data;

@@ -16,11 +16,12 @@ type PropsType = MapStatePropsType & MapDispatchPropsType & WithRouterType
 
 class ProfileContainer extends React.Component<PropsType> {
   componentDidMount() {
-    this.props.getUserProfile(this.props.router.params.userId);
-    // let userId = this.props.router.params.userId
-    // if (!userId) {
-    //   userId = '2'
-    // }
+    let userId = this.props.router.params.userId
+    if (!userId) {
+      userId = '2'
+    }
+    this.props.getUserProfile(userId);
+
     // usersAPI.getUserProfile(userId).then(data => this.props.setUserProfile(data))
   }
 

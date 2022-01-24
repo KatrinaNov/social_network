@@ -15,9 +15,6 @@ export const usersAPI = {
   getUserProfile (userId: string) {
     return instance.get(`profile/` + userId).then(response => response.data)
   },
-  authMe ()  {
-    return instance.get(`auth/me`, ).then(response => response.data)
-  },
   unFollow (id: number) {
     return  instance.delete(`follow/${id}`).then(response => response.data)
   },
@@ -25,6 +22,11 @@ export const usersAPI = {
     return   instance.post(`follow/${id}`).then(response => response.data)
   }
 
+}
+export const authAPI = {
+  me ()  {
+    return instance.get(`auth/me`, ).then(response => response.data)
+  },
 }
 
 // export const getUsers = (currentPage: number = 1, pageSize: number = 10) => {
