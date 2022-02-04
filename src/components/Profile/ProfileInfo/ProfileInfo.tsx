@@ -3,9 +3,10 @@ import s from './ProfileInfo.module.css'
 import Preloader from "../../common/Preloader/Preloader";
 import avatarDefault from '../../../assets/images/user-default.png'
 import {MapStatePropsType} from "../ProfileContainer";
+import {ProfilePropsType} from "../Profile";
 
 
-const ProfileInfo = (props: MapStatePropsType) => {
+const ProfileInfo = (props: ProfilePropsType) => {
   if (!props.profile) {
     return <Preloader/>
   }

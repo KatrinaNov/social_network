@@ -4,7 +4,7 @@ import {
   useParams,
   Location, NavigateFunction
 } from "react-router-dom";
-import {ComponentType} from "react";
+
 
 type ComponentWithRouterPropType = {
   location: Location

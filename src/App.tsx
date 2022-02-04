@@ -9,6 +9,7 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import LoginPage from "./components/Login/Login";
 //
 // type AppPropsType = {
 //   store: Store
@@ -25,12 +26,8 @@ const App = () => {
         <div className="container">
           <main className='main'>
             <Routes>
-              <Route path='/profile'
-                     element={<ProfileContainer/>}
-              >
-                <Route path=':userId'
-                       element={<ProfileContainer/>}
-                />
+              <Route path='/profile' element={<ProfileContainer/>}>
+                <Route path=':userId' element={<ProfileContainer/>}/>
               </Route>
               <Route path='/dialogs/*'
                      element={<DialogsContainer />}
@@ -41,6 +38,9 @@ const App = () => {
               <Route path='/news' element={<News/>}/>
               <Route path='/music' element={<Music/>}/>
               <Route path='/settings' element={<Settings/>}/>
+              <Route path='/login'
+                     element={<LoginPage />}
+              />
             </Routes>
           </main>
         </div>

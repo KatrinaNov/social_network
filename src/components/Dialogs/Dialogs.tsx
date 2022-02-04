@@ -23,6 +23,7 @@ const Dialogs = (props: DialogsPropsType) => {
     text ? props.updateNewMessageText(text) : props.updateNewMessageText('')
     // text ? dispatch(updateNewMessageTextCreator(text)) : dispatch(updateNewMessageTextCreator(''))
   }
+
   return (<>
       <h2 className={s.title}>Messages</h2>
       <div className={s.dialogs}>
