@@ -95,19 +95,13 @@ export const updateNewPOstTextCreator = (text: string) => ({
 } as const)
 
 export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
-  // let userId = param_userId
-  // if (!userId) {
-  //   userId = '2'
-  // }
   usersAPI.getUserProfile(userId).then(data => dispatch(setUserProfile(data)))
 }
+
 export const getUserStatus = (userId: string) => (dispatch: Dispatch) => {
-  // let userId = param_userId
-  // if (!userId) {
-  //   userId = '2'
-  // }
   profileAPI.getStatus(userId).then(data => dispatch(setStatus(data)))
 }
+
 export const updateStatus = (status: string) => (dispatch: Dispatch) => {
   // let userId = param_userId
   // if (!userId) {
