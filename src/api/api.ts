@@ -13,7 +13,8 @@ export const usersAPI = {
     return instance.get(`users?page=${currentPage}&count=${pageSize}`).then(response => response.data)
   },
   getUserProfile (userId: string) {
-    return instance.get(`profile/` + userId).then(response => response.data)
+    console.warn('Obsolete method. Please, profileAPI object')
+    return profileAPI.getUserProfile(userId)
   },
   unFollow (id: number) {
     return  instance.delete(`follow/${id}`).then(response => response.data)
@@ -23,28 +24,21 @@ export const usersAPI = {
   }
 
 }
+export const profileAPI = {
+  getUserProfile (userId: string) {
+    return instance.get(`profile/` + userId).then(response => response.data)
+  },
+  getStatus (userId: string) {
+    return instance.get(`/profile/status/` + userId).then(response => response.data)
+  },
+  updateStatus (status: string) {
+    return instance.put(`/profile/status`, {status}).then(response => response.data)
+  },
+}
+
 export const authAPI = {
   me ()  {
     return instance.get(`auth/me`, ).then(response => response.data)
   },
 }
 
-// export const getUsers = (currentPage: number = 1, pageSize: number = 10) => {
-//   return instance.get(`users?page=${currentPage}&count=${pageSize}`).then(response => response.data)
-// }
-//
-// export const getUserProfile = (userId: string) => {
-//   return instance.get(`profile/` + userId).then(response => response.data)
-// }
-//
-// export const authMe = () => {
-//   return instance.get(`auth/me`, ).then(response => response.data)
-// }
-//
-// export const deleteFollow = (id: number) => {
-//   return  instance.delete(`follow/${id}`).then(response => response.data)
-// }
-//
-// export const getFollow = (id: number) => {
-//   return   instance.post(`follow/${id}`).then(response => response.data)
-// }

@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './ProfileInfo.module.css'
 
 type ProfileStatusPropsType = {
   status: string
+  updateStatus: (param_id: string) => void
 }
 
 class ProfileStatus extends React.Component <ProfileStatusPropsType> {
   state = {
-    editMode: false
+    editMode: false,
+    status: this.props.status
   }
   activateEditMode = () => {
     this.setState({
@@ -17,6 +19,12 @@ class ProfileStatus extends React.Component <ProfileStatusPropsType> {
  deactivateEditMode = () => {
     this.setState({
       editMode: false
+    })
+   this.props.updateStatus(this.state.status);
+  }
+  onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
+    this.setState({
+      status: e.currentTarget.value
     })
   }
 
@@ -29,10 +37,10 @@ render() {
     }
       {this.state.editMode && <div>
           <input
-              value={this.props.status}
+              value={this.state.status}
               onBlur={this.deactivateEditMode}
               autoFocus={true}
-              // onChange={}
+              onChange={this.onStatusChange}
           />
       </div>
       }
