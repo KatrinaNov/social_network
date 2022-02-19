@@ -4,6 +4,7 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 
 import {DialogsPropsType} from "./DialogsContainer";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 
 const Dialogs = (props: DialogsPropsType) => {
   let state = props.dialogsPage
@@ -14,14 +15,8 @@ const Dialogs = (props: DialogsPropsType) => {
   let messagesElements = state.messages
     .map(m => <Message key={m.id} message={m.message} id={m.id}/>)
 
-  const addMessage = () => {
-    props.addMessage()
-    // dispatch(addMessageCreator())
-  }
-  const onChangeNewMessageText = (e:ChangeEvent<HTMLTextAreaElement>) => {
-    let text = e.currentTarget.value
-    text ? props.updateNewMessageText(text) : props.updateNewMessageText('')
-    // text ? dispatch(updateNewMessageTextCreator(text)) : dispatch(updateNewMessageTextCreator(''))
+  const addNewMessage = (formData: FormDataType) => {
+    props.addMessage(formData.newMessageBody)
   }
 
   return (<>
@@ -34,18 +29,34 @@ const Dialogs = (props: DialogsPropsType) => {
           {messagesElements}
           {/*<div className={`${s.message} ${s.answer}`}>Hello my friend!</div>*/}
           <div className={s.send_message}>
-            <textarea
-              onChange={onChangeNewMessageText}
-              value={state.newMessage}
-              placeholder={'Write your message'}
-            />
-            <button onClick={addMessage}>Send message</button>
+            <AddMessageReduxForm onSubmit={addNewMessage}/>
           </div>
-
         </div>
       </div>
     </>
   )
 }
 
+type FormDataType = {
+  newMessageBody: string
+}
+
+const AddMessageFrom: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+  return (
+    <form onSubmit={props.handleSubmit}>
+      <Field
+        placeholder={'Enter your message'}
+        component={"textarea"}
+        name={"newMessageBody"}
+      />
+      <button>Send message</button>
+    </form>
+  )
+}
+const AddMessageReduxForm = reduxForm<FormDataType>({
+  //a unique name gor the form
+  form: 'dialogAddMessageForm'
+})(AddMessageFrom)
+
 export default Dialogs;
+

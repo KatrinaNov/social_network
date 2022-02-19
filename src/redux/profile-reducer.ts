@@ -1,6 +1,5 @@
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
-import {setCurrentPage, setUsers, toggleIsFetching} from "./users-reducer";
 
 export type PostTypeProps = {
   id: number,
@@ -33,19 +32,17 @@ export type ProfilePropsType = {
 export type ProfileType = ProfilePropsType | null
 export type InitialStatePostsType = {
   posts: Array<PostTypeProps>
-  newPostText: string
+  // newPostText: string
   profile: ProfileType
   status: string
 }
 
 const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_STATUS = "SET_STATUS";
 
 export type ProfileActionsTypes =
   ReturnType<typeof addPostCreator>
-  | ReturnType<typeof updateNewPOstTextCreator>
   | ReturnType<typeof setUserProfile>
   | ReturnType<typeof setStatus>
 
@@ -54,7 +51,7 @@ let initialState: InitialStatePostsType = {
     {id: 1, message: "It's my first post", likesCount: 12},
     {id: 2, message: "Hi! I'm learning React", likesCount: 152},
   ],
-  newPostText: '',
+  // newPostText: '',
   profile: null,
   status: '',
 }
@@ -67,15 +64,11 @@ const profileReducer = (state: InitialStatePostsType = initialState, action: Pro
     case ADD_POST: {
       let newPost: PostTypeProps = {
         id: 5,
-        message: state.newPostText,
+        message: action.newPostText,
         likesCount: 0
       };
-      return {...state, posts: [...state.posts, newPost], newPostText: ''};
+      return {...state, posts: [newPost, ...state.posts]};
     }
-
-    case UPDATE_NEW_POST_TEXT:
-      return {...state, newPostText: action.newText};
-
     case SET_USER_PROFILE:
       return {...state, profile: action.profile};
 
@@ -87,12 +80,10 @@ const profileReducer = (state: InitialStatePostsType = initialState, action: Pro
   }
 }
 // actionCreators
-export const addPostCreator = () => ({type: ADD_POST} as const)
+export const addPostCreator = (newPostText: string) => ({type: ADD_POST, newPostText} as const)
 export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile} as const)
 export const setStatus = (status: string) => ({type: SET_STATUS, status} as const)
-export const updateNewPOstTextCreator = (text: string) => ({
-  type: UPDATE_NEW_POST_TEXT, newText: text
-} as const)
+
 
 export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
   usersAPI.getUserProfile(userId).then(data => dispatch(setUserProfile(data)))
