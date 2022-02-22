@@ -1,6 +1,5 @@
-import {Dispatch} from "redux";
-import {authAPI, usersAPI} from "../api/api";
-import {setCurrentPage, setUsers} from "./users-reducer";
+import {AnyAction, Dispatch} from "redux";
+import {authAPI} from "../api/api";
 
 export type InitialStatePostsType = {
   id: number | null,
@@ -29,15 +28,16 @@ const authReducer = (state: InitialStatePostsType = initialState, action: AuthAc
     case SET_USER_DATA:
       return {
         ...state,
-        ...action.data,
-        isAuth: true
+        ...action.payload,
       }
     default:
       return state;
   }
 }
 // actionCreators
-export const setAuthUserData = (id: number, email: string, login: string) => ({type: SET_USER_DATA, data: {id, email, login}} as const)
+export const setAuthUserData = (id: number | null, email: string | null, login: string | null, isAuth: boolean) => (
+  {type: SET_USER_DATA, payload: {id, email, login, isAuth}} as const
+)
 export const toggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching} as const)
 
 export const getAuthUserData = () => (dispatch: Dispatch) => {
@@ -45,10 +45,31 @@ export const getAuthUserData = () => (dispatch: Dispatch) => {
     .then(data => {
       if (data.resultCode === 0) {
         let {id, email, login} = data.data;
-        dispatch(setAuthUserData(id, email, login))
+        dispatch(setAuthUserData(id, email, login, true))
       }
     })
 }
+
+export const login = (email: string, password: string, rememberMe :boolean) => (dispatch: Dispatch) => {
+  authAPI.login(email, password, rememberMe)
+    .then(data => {
+      if (data.resultCode === 0) {
+        //@ts-ignore
+        dispatch(getAuthUserData())
+      }
+    })
+}
+
+export const logout = () => (dispatch: Dispatch) => {
+  authAPI.logout()
+    .then(data => {
+      if (data.resultCode === 0) {
+        dispatch(setAuthUserData(null, null, null, false))
+      }
+    })
+}
+
+
 
 export default authReducer;
 
