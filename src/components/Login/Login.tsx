@@ -38,10 +38,22 @@ const LoginReduxForm = reduxForm<FormDataType>({
   form: 'login'
 })(LoginForm)
 
-const Login = (props: any) => {
+type MapStateToPropsType = {
+  isAuth: boolean
+}
+type MapDispatchPropsType = {
+  login: (email: string, password: string, rememberMe: boolean) => void
+  logout: () => void
+}
+
+
+let mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
+  isAuth: state.auth.isAuth
+})
+
+const Login: React.FC<MapStateToPropsType & MapDispatchPropsType> = (props) => {
   const onSubmit = (formData: FormDataType) => {
     props.login(formData.login, formData.password, formData.rememberMe)
-
   }
 
   if (props.isAuth) {
@@ -55,12 +67,5 @@ const Login = (props: any) => {
     <LoginReduxForm onSubmit={onSubmit}/>
   </div>
 };
-
-export type mapStateToPropsType = {
-  isAuth: boolean
-}
-let mapStateToProps = (state: AppStateType): mapStateToPropsType => ({
-  isAuth: state.auth.isAuth
-})
 
 export default connect(mapStateToProps, {login, logout}) (Login);
