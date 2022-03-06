@@ -9,7 +9,7 @@ import {
 type ComponentWithRouterPropType = {
   location: Location
   navigate: NavigateFunction
-  params: {userId: string}
+  params: {userId: string | null}
 }
 
 export type WithRouterType = {

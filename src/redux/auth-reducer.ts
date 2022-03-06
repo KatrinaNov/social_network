@@ -1,8 +1,9 @@
 import {AnyAction, Dispatch} from "redux";
 import {authAPI} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 export type InitialStatePostsType = {
-  id: number | null,
+  id: string | null,
   email: string | null,
   login: string | null,
   isAuth: boolean,
@@ -35,7 +36,7 @@ const authReducer = (state: InitialStatePostsType = initialState, action: AuthAc
   }
 }
 // actionCreators
-export const setAuthUserData = (id: number | null, email: string | null, login: string | null, isAuth: boolean) => (
+export const setAuthUserData = (id: string | null, email: string | null, login: string | null, isAuth: boolean) => (
   {type: SET_USER_DATA, payload: {id, email, login, isAuth}} as const
 )
 export const toggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching} as const)
@@ -56,6 +57,11 @@ export const login = (email: string, password: string, rememberMe :boolean) => (
       if (data.resultCode === 0) {
         //@ts-ignore
         dispatch(getAuthUserData())
+      } else {
+        let messages = data.messages.length > 0
+          ? data.messages[0]
+          : 'Some error';
+        dispatch(stopSubmit('login', {_error: messages}))
       }
     })
 }
